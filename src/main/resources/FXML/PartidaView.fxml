@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="partidaRoot" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <bottom>
+      <HBox alignment="TOP_CENTER" spacing="5.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="intentoField" />
+            <Button fx:id="letraButton" mnemonicParsing="false" onAction="#OnLetraAction" text="Letra" />
+            <Button fx:id="resolverButton" mnemonicParsing="false" onAction="#OnResolverAction" text="Resolver" />
+         </children>
+         <padding>
+            <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+         </padding>
+      </HBox>
+   </bottom>
+   <center>
+      <VBox alignment="TOP_CENTER" spacing="35.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="ahorcadoImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="adivinarLabel" />
+            <Label fx:id="fallosLabel" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="20.0" />
+         </padding>
+      </VBox>
+   </center>
+   <right>
+      <VBox spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Puntos:" />
+            <Label fx:id="puntosLabel" />
+         </children>
+         <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </padding>
+      </VBox>
+   </right>
+</BorderPane>
