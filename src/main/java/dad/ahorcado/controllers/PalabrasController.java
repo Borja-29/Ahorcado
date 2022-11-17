@@ -12,8 +12,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.BorderPane;
 
 public class PalabrasController implements Initializable{
@@ -62,12 +65,26 @@ public class PalabrasController implements Initializable{
 	
 	@FXML
 	void OnAgregarAction(ActionEvent event) {
-
+		TextInputDialog dialog = new TextInputDialog();
+		dialog.setHeaderText(null);
+		dialog.setTitle("Error");
+		dialog.setContentText("Introduce la palabra que desee introducir");
+		dialog.showAndWait();
+		
+		palabras.add(dialog.getResult());
 	}
 
 	@FXML
 	void OnQuitarAction(ActionEvent event) {
-
+		
+		Alert alert = new Alert(Alert.AlertType.ERROR);
+		alert.setHeaderText(null);
+		alert.setTitle("Error");
+		alert.setContentText("Palabra: '" + palabrasList.getSelectionModel().getSelectedItem() + "' eliminada con éxito");
+		alert.showAndWait();
+		
+		palabras.remove(palabrasList.getSelectionModel().getSelectedItem());
+		
 	}
 	
 	public final ListProperty<String> palabrasProperty() {

@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 public class App extends Application{
 
 	private static final File PALABRAS_FILE = new File("palabras.txt");
+	private static final File PUNTUACIONES_FILE = new File("puntuaciones.txt");
 
 	public static Stage primaryStage;
 	
@@ -26,6 +27,15 @@ public class App extends Application{
 			rootController.getPalabras().addAll(
 					Files.readAllLines(
 							PALABRAS_FILE.toPath(), 
+							StandardCharsets.UTF_8
+					)
+			);
+		}
+		// cargar las puntuaciones desde fichero
+		if (PUNTUACIONES_FILE.exists()) {
+			rootController.getPuntuaciones().addAll(
+					Files.readAllLines(
+							PUNTUACIONES_FILE.toPath(), 
 							StandardCharsets.UTF_8
 					)
 			);
@@ -47,11 +57,21 @@ public class App extends Application{
 	public void stop() throws Exception {
 		System.out.println("terminando!!");
 		// guardar las palabras en un fichero
-		final StringBuffer contenido = new StringBuffer();
-		rootController.getPalabras().forEach(palabra -> contenido.append(palabra + "\n"));
+		final StringBuffer contenidoPalabras = new StringBuffer();
+		rootController.getPalabras().forEach(palabra -> contenidoPalabras.append(palabra + "\n"));
 		Files.writeString(
 				PALABRAS_FILE.toPath(), 
-				contenido.toString().trim(), 
+				contenidoPalabras.toString().trim(), 
+				StandardCharsets.UTF_8, 
+				StandardOpenOption.CREATE,
+				StandardOpenOption.TRUNCATE_EXISTING
+		);
+		// guardar las puntuaciones en un fichero
+		final StringBuffer contenidoPuntuaciones = new StringBuffer();
+		rootController.getPuntuaciones().forEach(puntuacion -> contenidoPuntuaciones.append(puntuacion + "\n"));
+		Files.writeString(
+				PUNTUACIONES_FILE.toPath(), 
+				contenidoPuntuaciones.toString().trim(), 
 				StandardCharsets.UTF_8, 
 				StandardOpenOption.CREATE,
 				StandardOpenOption.TRUNCATE_EXISTING
